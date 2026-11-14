@@ -1,4 +1,113 @@
-<!-- The FAQ wording itself is in private/faqs.html (members-only, stored encrypted). -->
-@if (html(); as faqs) {
-  <div class="faqs" [innerHTML]="faqs"></div>
-}
+<!--
+  MEMBERS' FAQs — edit the wording here, then run:  npm run protect
+
+  This file is never published as it is. "npm run protect" scrambles it
+  (with the hub password) into public/protected/, and the site unscrambles
+  it after a member signs in.
+
+  Each question is one <section class="faq-section">:
+    - <h2> is the question
+    - <div class="faq-row"> holds an image box and a text box side by side
+    - add the class "reverse" to the faq-row to put the image on the right
+    - leave out the <div class="faq-image"> block for a text-only answer
+
+  Images: save the picture in private/files/img/ and name it with
+  data-file, e.g.  <img data-file="img/my-photo.jpg" alt="" />
+  (data-file, not src, because the picture is stored scrambled too).
+
+  Write & as &amp; in the visible text.
+-->
+
+<section class="faq-section">
+  <h2>HOW CAN I GET MY DESIGN TO BE FABRICATED?</h2>
+  <div class="faq-row">
+    <div class="faq-image">
+      <img data-file="img/faq-fab.jpg" alt="" />
+    </div>
+    <div class="faq-text">
+      <p>
+        You can e-mail your design to
+        <a href="mailto:makers@royalholloway.su" target="_blank">makers@royalholloway.su</a>,
+        and tell us what colour, and material (for laser-cut only) you would like. <br />
+        The files should be either an <b>STL</b> for 3D printing, or an <b>SVG</b>/<b>DXF</b> for laser-cutting. <br />
+        <br />
+
+        <b><u>Colour Options</u></b> <br />
+        <b>Laser Cutting</b> <br />
+        SOLID: Black, White, Purple, Blue, Green, Red <br />
+        TRANSPARENT: Clear, Light Blue, Dark Green, Red <br />
+        FLUORESCENT: Orange, Yellow, Dark Blue, Red <br />
+        <br />
+        <b>3D Printing</b> <br />
+        PLA: Black, White, Red, Orange, Green, Blue... <br />
+        <br />
+        <i>(Please note that these colour options may change at any time. Please contact us for the colour options at the time.)</i><br />
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <h2>SOLDERING CERTIFICATION</h2>
+  <div class="faq-row reverse">
+    <div class="faq-text">
+      <p>
+        A soldering certification session is required for all members to use the soldering irons in our electronic laboratories. <br />
+        This is to ensure that all members are able to use the equipment safely and effectively. <br />
+        Please request a session with the form below if you are not yet certified with us, thanks. <br />
+      </p>
+
+      <iframe
+        class="faq-form"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSe7epiMHRAem4hFLWErmJ7ACSrn6pEMYwhGCLXdQWaRFN0MYQ/viewform?embedded=true"
+        title="Soldering Certification Request Form"
+        loading="lazy">
+        Loading…
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <h2>WHEN CAN I ACCESS THE ELECTRONICS &amp; PC LABS?</h2>
+  <div class="faq-row">
+    <div class="faq-image">
+      <img data-file="img/faq-floorplan.png" alt="" />
+    </div>
+    <div class="faq-text">
+      <p>
+        As a member, you can access the SHILLING-1-06 electronics lab as long as there is at least a technician &amp; a member of the committee present. <br />
+        The preset lab access hours for societies are Wednesday 13:00-17:00, which will usually be our workshop times. <br />
+        If you would like to use the lab equipment outside of these hours,
+        please ask one of the committee members for the availability of the lab. <br />
+        Alternatively, you can also check the detailed timetable of the lab on the RHUL Timetable System.
+        Simply go to <b>'Location'</b>, select the <b>'Electronic Engineering'</b> department, and <b>'SHILLING-1-06'</b>, then select the week(s) and "View Timetable" <br />
+        <br />
+      </p>
+      <p class="faq-notice">
+        <b>*** There will be no access available during week 11-12, 19-20, 27-28 &amp; 34-36 due to EE project deadlines. ***</b> <br />
+        <br />
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <h2>WORKSHOPS</h2>
+  <div class="faq-row reverse">
+    <div class="faq-image">
+      <img data-file="img/faq-workshop.jpg" alt="" />
+    </div>
+    <div class="faq-text">
+      <p>
+        All workshops will be scheduled on a <b>Wednesday afternoon</b>, <b>14:00-16:00</b>, at <b>SHILLING-1-06 electronic teaching lab</b>. <br />
+        The detailed schedule for all the workshops will be published on a weekly basis,
+        please keep track of any news &amp; announcements through the members'
+        <a class="link-whatsapp" href="https://chat.whatsapp.com/HjIsilawLZ2HgsxRGEv0sA" target="_blank" rel="noopener">WhatsApp group chat</a>, our
+        <a class="link-discord" href="https://discord.com/invite/EcwhFKFvaS" target="_blank" rel="noopener">Discord server</a>, the <b>event calendar</b> on the website or our
+        <a class="link-instagram" href="https://www.instagram.com/rhulmakerssoc" target="_blank" rel="noopener">Instagram</a>. <br />
+        <br />
+      </p>
+    </div>
+  </div>
+</section>
