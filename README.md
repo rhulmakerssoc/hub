@@ -1,4 +1,4 @@
-# The Makers' Hub (Angular)
+# The Makers' Hub
 
 The Royal Holloway Makers' Society hub as an Angular 22 single-page app, published with GitHub Pages at `hub.rhulmakerssociety.site`.
 
@@ -14,9 +14,9 @@ The Royal Holloway Makers' Society hub as an Angular 22 single-page app, publish
 | `/faqs` | Members' FAQs | Members |
 | `/about` | Contact Details & Members' Communities | Members |
 
-Addresses from the old site (`/workshops.html`, `/sockeyrings.html` and so on) forward to the new ones, so existing links and bookmarks keep working. Any other address shows a "Page Not Found" page.
+Addresses from the old versions (`/workshops.html`, `/sockeyrings.html` and so on) forward to the new ones, so existing links and bookmarks keep working. Any other address shows a "Page Not Found" page.
 
-## How the members' content is protected
+## Protections
 
 This repository is public, so the members-only content is never stored in it in readable form.
 
@@ -30,9 +30,9 @@ No copy or hash of the password is stored anywhere. The protection is exactly as
 
 Public pages (the password screen, keyrings quote, logo and banner) are not encrypted. Neither is anything in `src/app/site-content.ts`.
 
-## Editing content
+## Editing Contents
 
-### Members-only content (encrypted)
+### Members-Only Contents (Encrypted)
 
 | To change | Edit |
 |---|---|
@@ -56,7 +56,7 @@ It asks for the hub password (nothing shows as you type), re-encrypts what chang
 
 Each sheet appears as a dropdown, two per row. Its PDF is only downloaded and decrypted when the dropdown is first opened.
 
-### Public content
+### Public Contents
 
 | To change | Edit |
 |---|---|
@@ -67,7 +67,7 @@ Each sheet appears as a dropdown, two per row. Its PDF is only downloaded and de
 | Colours and fonts | `src/styles.css` |
 | Logo, banner, favicon | `public/assets/img/` |
 
-## Changing the password
+## Changing Password
 
 ```bash
 npm run protect
@@ -77,7 +77,7 @@ Type the new password when asked. The script notices it differs from last time, 
 
 Never write the password in this repository, including code comments, commit messages and this README. Keep it in the committee's password manager.
 
-## Making a change
+## Committing New Changes
 
 1. Sign in to GitHub in VS Code with the society's account.
 2. Clone `rhulmakerssoc/hub` and work on the `source` branch.
@@ -86,7 +86,7 @@ Never write the password in this repository, including code comments, commit mes
 5. If you changed anything in `private/`, run `npm run protect`.
 6. Commit and push. The live site updates by itself a few minutes later.
 
-## Running it on your computer
+## Running & Debugging on Personal PCs
 
 You need Node.js 22.22+ or 24.15+.
 
@@ -118,7 +118,7 @@ Direct links such as `/events` work because the build publishes a copy of `index
 - **Not protected against a member:** anyone who has the password can read and download everything, and can pass the password on. Change it when that matters, for example each year.
 - **Not hidden:** that the files exist, how many there are and their sizes; and the public pages.
 
-## Project layout
+## Project Tree
 
 ```
 private/                   members-only originals (NOT in GitHub; back this up)
