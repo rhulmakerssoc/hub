@@ -1,0 +1,72 @@
+:host {
+  display: block;
+}
+
+.pdf-scroller {
+  height: 480px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #eceae4;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pdf-page {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+.pdf-status {
+  margin: 0;
+  padding: 32px 12px;
+  text-align: center;
+  line-height: 1.3;
+  color: var(--colour-muted);
+}
+
+.pdf-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  text-decoration: none;
+  color: #000;
+  background-color: var(--colour-card-bg);
+  border: 2px solid var(--colour-secondary-blue);
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 11pt;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.pdf-download:hover {
+  background-color: var(--colour-primary);
+  border-color: var(--colour-primary);
+  transform: translateY(-2px);
+}
+
+.pdf-download i {
+  font-size: 16pt;
+  width: 20px;
+  text-align: center;
+}
+
+.pdf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (max-width: 760px) {
+  .pdf-scroller {
+    height: 420px;
+  }
+}
+

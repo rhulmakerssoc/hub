@@ -1,0 +1,36 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--colour-secondary-green);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.address {
+  line-height: 1.3;
+}
+.map-wrap {
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+.map-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 280px;
+  border: 0;
+}
+@media (max-width: 760px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,8 @@
+<section class="link-grid">
+  @for (tile of tiles; track tile.path) {
+    <a class="link-tile" [routerLink]="tile.path" [style.border-left-color]="tile.accent">
+      <h3>{{ tile.title }}</h3>
+      <p>{{ tile.text }}</p>
+    </a>
+  }
+</section>

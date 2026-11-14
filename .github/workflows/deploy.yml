@@ -1,0 +1,76 @@
+# Builds the Angular app and publishes it to GitHub Pages on every push to the source (or main) branch.
+# One-time setup: repo Settings → Pages → Build and deployment → Source: "GitHub Actions".
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [source, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Check only encrypted members' files are in the repository
+        run: |
+          if [ -d private ] || [ -d public/assets/pdf ]; then
+            echo "::error::Unencrypted members' files (private/ or public/assets/pdf/) have been committed. This repository is public: remove them, and publish only public/protected/."
+            exit 1
+          fi
+          if [ ! -f public/protected/vault.json ]; then
+            echo "::error::public/protected/ is missing. Run 'npm run protect' on your computer and commit the result."
+            exit 1
+          fi
+
+      - run: npm ci
+
+      - name: Work out the site's base path
+        id: base
+        run: |
+          # With a custom domain (public/CNAME exists) or a username.github.io
+          # repo, the site is served from the domain root. Otherwise GitHub
+          # Pages serves it from /<repo-name>/.
+          repo="${{ github.event.repository.name }}"
+          if [[ -f public/CNAME || "$repo" == *.github.io ]]; then
+            echo "href=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "href=/$repo/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build
+        run: npx ng build --base-href "${{ steps.base.outputs.href }}"
+
+      - name: Add SPA fallback for deep links
+        run: node scripts/postbuild-pages.mjs
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist/makers-portal/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,26 @@
+@switch (state()) {
+  @case ('loading') {
+    <p class="pdf-status" role="status">Loading…</p>
+  }
+  @case ('error') {
+    <p class="pdf-status" role="alert">Access Error. Please refresh the page.</p>
+  }
+  @case ('ready') {
+    <div #scroller class="pdf-scroller" tabindex="0" [attr.aria-label]="title() + ' (scrollable)'">
+      @for (page of pages(); track page.number) {
+        <div #pageBox class="pdf-page" [attr.data-page]="page.number" [style.aspect-ratio]="page.aspect"></div>
+      }
+    </div>
+  }
+}
+
+@if (downloadUrl(); as url) {
+  <div class="pdf-actions">
+    <a class="pdf-download" [href]="url" [download]="fileName()">
+      <i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Download PDF
+    </a>
+    <a class="pdf-download" [href]="url" target="_blank" rel="noopener">
+      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Open in New Tab
+    </a>
+  </div>
+}

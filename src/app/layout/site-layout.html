@@ -1,0 +1,59 @@
+<div class="page-frame">
+  <header class="banner">
+    <nav class="navbar" aria-label="Main">
+      <a class="brand" [routerLink]="variant() === 'members' ? '/home' : '/'" [attr.aria-label]="site.hubName">
+        <img [src]="site.logo" alt="" class="brand-logo" />
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="menuOpen()"
+        (click)="toggleMenu()">&#9776;</button>
+
+      <div class="nav-right" [class.open]="menuOpen()">
+        @if (variant() === 'members') {
+          <ul class="nav-links">
+            @for (link of memberLinks; track link.path) {
+              <li><a [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a></li>
+            }
+            <li><button type="button" class="nav-link-button" (click)="logOut()">Log Out</button></li>
+          </ul>
+        } @else {
+          @if (site.publicNavLinks.length) {
+            <ul class="nav-links">
+              @for (link of site.publicNavLinks; track link.label) {
+                <li>
+                  @if (link.path) {
+                    <a [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+                  } @else {
+                    <a [href]="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
+                  }
+                </li>
+              }
+            </ul>
+          }
+          @if (vault.hasSession()) {
+            <a class="nav-signin" routerLink="/home">Return To Hub</a>
+          } @else {
+            <a class="nav-signin" routerLink="/">Sign In</a>
+          }
+        }
+      </div>
+    </nav>
+
+    <div class="page-title">
+      <h1>{{ page().heading }}</h1>
+      @if (page().subtitle) {
+        <p class="subtitle">{{ page().subtitle }}</p>
+      }
+    </div>
+  </header>
+
+  <main>
+    <router-outlet />
+  </main>
+
+  <footer>{{ site.footerText }}</footer>
+</div>

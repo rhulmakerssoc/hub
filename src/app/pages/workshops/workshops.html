@@ -1,0 +1,24 @@
+@for (group of groups(); track group.heading) {
+  <section>
+    <h2>{{ group.heading }}</h2>
+
+    <div class="pdf-grid">
+      @for (sheet of group.sheets; track sheet.file) {
+        <details class="pdf-slot" (toggle)="onToggle(sheet.file, $event)">
+          <summary>
+            <span class="pdf-title">{{ sheet.title }}</span>
+            <span class="chevron" aria-hidden="true"></span>
+          </summary>
+
+          <div class="pdf-body">
+            @if (loaded().has(sheet.file)) {
+              <app-pdf-viewer [file]="sheet.file" [title]="sheet.title" />
+            }
+          </div>
+        </details>
+      }
+    </div>
+  </section>
+} @empty {
+  <p>This lab sheet is currently unavailable.</p>
+}

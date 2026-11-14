@@ -1,0 +1,36 @@
+<div class="gate">
+  <div class="gate-card">
+    <img class="society-mark" [src]="site.logo" alt="" />
+    <h1>{{ site.hubName }}</h1>
+    <p class="gate-tagline">{{ site.societyName }}</p>
+
+    <form method="post" action="" autocomplete="on" (submit)="submit($event)">
+      <!-- Hidden username field: there is no username, but password managers
+           save and refill more reliably when one is present. -->
+      <input
+        type="text"
+        name="username"
+        autocomplete="username"
+        value=""
+        readonly
+        hidden
+        aria-hidden="true">
+
+      <label for="gate-password" class="visually-hidden">Password</label>
+      <input
+        #password
+        type="password"
+        id="gate-password"
+        name="password"
+        placeholder="Enter password"
+        autocomplete="current-password"
+        required
+        (input)="error.set('')">
+
+      <p class="gate-error" role="alert">{{ error() }}</p>
+      <button type="submit" class="btn" [disabled]="checking()">{{ checking() ? 'Verifying…' : 'Login' }}</button>
+    </form>
+
+    <p class="gate-footnote">{{ site.loginFootnote }}</p>
+  </div>
+</div>

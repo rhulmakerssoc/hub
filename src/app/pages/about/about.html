@@ -1,0 +1,58 @@
+<div class="about-grid">
+  <div class="card">
+    <h3><span class="dot" aria-hidden="true"></span>Email</h3>
+    <p>
+      <a [href]="'mailto:' + site.email">{{ site.email }}</a>
+    </p>
+
+    @if (site.phoneDisplay) {
+      <hr />
+
+      <h3><span class="dot" aria-hidden="true"></span>Phone Number</h3>
+      <p>
+        <a [href]="'tel:' + site.phoneLink">{{ site.phoneDisplay }}</a>
+      </p>
+    } @else {
+      <p></p>
+    }
+  </div>
+
+  <div class="card">
+    <h3><span class="dot" aria-hidden="true"></span>Find Us</h3>
+    <p class="address">
+      @for (line of site.addressLines; track $index) {
+        {{ line }}<br />
+      }
+    </p>
+    <div class="map-wrap">
+      <iframe
+        [src]="site.mapEmbedUrl | safeResourceUrl"
+        [title]="site.mapTitle"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<section>
+  <h2>Follow Us</h2>
+  <div class="social-grid">
+    @for (link of site.socials; track link.label) {
+      <a class="social-btn" [href]="link.url" target="_blank" rel="noopener">
+        <i [class]="link.icon" aria-hidden="true"></i> {{ link.label }}
+      </a>
+    }
+  </div>
+</section>
+
+<section>
+  <h2>Our Members' Community</h2>
+  <div class="social-grid">
+    @for (link of community(); track link.label) {
+      <a class="social-btn" [href]="link.url" target="_blank" rel="noopener">
+        <i [class]="link.icon" aria-hidden="true"></i> {{ link.label }}
+      </a>
+    }
+  </div>
+</section>

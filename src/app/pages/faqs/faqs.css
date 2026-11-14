@@ -1,0 +1,66 @@
+/* Every rule starts with app-faqs-page so these styles only affect the FAQ page
+   (see the note in faqs.ts). */
+app-faqs-page h2 {
+  border-bottom: 3px solid var(--colour-primary);
+  padding-bottom: 8pt;
+}
+app-faqs-page .faq-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 16px;
+}
+app-faqs-page .faq-row.reverse {
+  flex-direction: row-reverse;
+}
+app-faqs-page .faq-image {
+  flex: 0 0 240px;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #eee;
+  border: 1px solid #ddd;
+}
+app-faqs-page .faq-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+app-faqs-page .faq-text {
+  flex: 1;
+  min-width: 0;
+}
+app-faqs-page .faq-form {
+  display: block;
+  width: 100%;
+  height: 600px;
+  border: 0;
+}
+app-faqs-page .faq-notice {
+  color: #ff0000;
+  text-align: center;
+}
+app-faqs-page .link-whatsapp,
+app-faqs-page .link-discord,
+app-faqs-page .link-instagram {
+  font-weight: bold;
+}
+app-faqs-page .link-whatsapp {
+  color: #5c9e31;
+}
+app-faqs-page .link-discord {
+  color: #5865f2;
+}
+app-faqs-page .link-instagram {
+  color: #a838f3;
+}
+@media (max-width: 760px) {
+  app-faqs-page .faq-row,
+  app-faqs-page .faq-row.reverse {
+    flex-direction: column;
+  }
+  app-faqs-page .faq-image {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}

@@ -1,0 +1,9 @@
+@if (calendarUrl()) {
+  <section class="calendar-wrap">
+    <iframe
+      [src]="calendarUrl() | safeResourceUrl"
+      title="Makers' Society Events Calendar"
+      loading="lazy"
+    ></iframe>
+  </section>
+}

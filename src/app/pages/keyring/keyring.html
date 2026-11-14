@@ -1,0 +1,88 @@
+<section class="card">
+  <div class="form-group">
+    <label for="designType">Design Type:</label>
+    <select id="designType" [value]="designTypeId()" (change)="onDesignTypeChange($any($event.target).value)">
+      @for (t of designTypes; track t.id) {
+        <option [value]="t.id">{{ t.label }}</option>
+      }
+    </select>
+  </div>
+
+  @if (!isCustom()) {
+    <div class="form-group">
+      <label for="quantity">Number of Keyrings:</label>
+      <input
+        #qty
+        type="number"
+        id="quantity"
+        min="1"
+        step="1"
+        inputmode="numeric"
+        [value]="quantityInput()"
+        (input)="quantityInput.set(qty.value)"
+        (blur)="normaliseQuantity(qty)" />
+    </div>
+
+    <div class="form-group">
+      <label for="modelSelect">Keyring Model:</label>
+      <select id="modelSelect" (change)="onModelChange($any($event.target).value)">
+        @for (m of models(); track m.id) {
+          <option [value]="m.id" [selected]="m.id === model().id">{{ m.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="keyringText">
+        Text on Keyring:
+        <span class="field-hint">({{ text().length }}/{{ model().maxCharacters }} characters)</span>
+      </label>
+      <input
+        #txt
+        type="text"
+        id="keyringText"
+        placeholder="Enter text here"
+        [maxLength]="model().maxCharacters"
+        [value]="text()"
+        (input)="text.set(txt.value)" />
+    </div>
+
+    <div class="form-group">
+      <label for="colour">Desired Colour (Limited Availability):</label>
+      <select id="colour" [value]="colour()" (change)="colour.set($any($event.target).value)">
+        @for (c of colours; track c) {
+          <option [value]="c">{{ c }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="calc-results" aria-live="polite">
+      <h2>Your Estimate</h2>
+      <p class="price-line">Total Price: <span>{{ totalPrice() }}</span></p>
+      <p class="price-line">Price Per Keyring: <span>{{ perKeyringPrice() }}</span></p>
+      <div class="calc-notes">
+        <p>* A flat service charge of {{ serviceCharge }} is applied per order.</p>
+        <p>** {{ largeOrderNote }}</p>
+      </div>
+    </div>
+
+    <a class="btn" [href]="orderMailto()">Get Quote</a>
+  } @else {
+    <p class="message-box">
+      For complex or custom designs, please contact us directly to discuss your specific requirements and receive a
+      personalised quote. We'd love to help bring your unique ideas to life!
+    </p>
+    <a class="btn" [href]="customMailto">Contact for Custom Quote</a>
+  }
+</section>
+
+<section class="card calc-contact">
+  <h2>Ready to order or have questions?</h2>
+  <div class="social-grid">
+    @for (link of site.keyringContacts; track link.label) {
+      <a class="social-btn" [href]="link.url" target="_blank" rel="noopener">
+        <i [class]="link.icon" aria-hidden="true"></i> {{ link.label }}
+      </a>
+    }
+  </div>
+</section>
