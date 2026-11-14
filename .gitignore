@@ -44,6 +44,5 @@ __screenshots__/
 Thumbs.db
 
 # Members-only originals (PDFs, FAQ wording, links). NEVER commit these:
-# the repository is public. Only the encrypted copies in public/protected/
-# are published. Keep a backup of this folder somewhere private.
+# The repository is public. Only the encrypted copies in public/protected/ are published. Keep a backup of this folder somewhere private.
 /private/
