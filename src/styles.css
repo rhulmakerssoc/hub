@@ -200,6 +200,23 @@ hr {
   text-shadow: none;
 }
 
+/* Light/dark switch: right of the nav links, or beside the menu button on phones */
+.nav-right { margin-left: auto; }
+
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 4px;
+  color: #ffffff;
+  font-size: 15pt;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.theme-toggle:hover { color: var(--colour-primary); }
+
 .nav-toggle {
   display: none;
   background: none;
@@ -328,7 +345,8 @@ footer {
   Responsive nav
    --------------------------------------------------------- */
 @media (max-width: 760px) {
-  .nav-toggle { display: block; }
+  .nav-toggle { display: block; order: 1; }
+  .theme-toggle { margin-left: auto; }
 
   .nav-right {
     position: absolute;

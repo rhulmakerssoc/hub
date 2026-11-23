@@ -59,6 +59,25 @@ export class SiteLayout {
   protected readonly page = computed(() => (this.routeData()['page'] ?? { heading: '' }) as PageData);
   protected readonly variant = computed(() => (this.route.snapshot.data['variant'] ?? 'members') as NavVariant);
 
+    /** True while the site is showing dark mode (from the saved choice, or the device setting). */
+  protected readonly isDark = signal(currentlyDark());
+
+  constructor() {
+    // With no saved choice the site follows the device, so keep the icon in step if that changes.
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => this.isDark.set(currentlyDark()));
+  }
+
+  protected toggleTheme(): void {
+    const theme = this.isDark() ? 'light' : 'dark';
+    document.documentElement.style.colorScheme = theme;
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      /* storage unavailable: the choice lasts until the page is reloaded */
+    }
+    this.isDark.set(theme === 'dark');
+  }
+  
   protected toggleMenu(): void {
     this.menuOpen.update((open) => !open);
   }
@@ -67,4 +86,10 @@ export class SiteLayout {
     this.vault.lock();
     this.router.navigateByUrl('/');
   }
+}
+
+function currentlyDark(): boolean {
+  const chosen = document.documentElement.style.colorScheme;
+  if (chosen === 'light' || chosen === 'dark') return chosen === 'dark';
+  return matchMedia('(prefers-color-scheme: dark)').matches;
 }
