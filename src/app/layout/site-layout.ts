@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, afterNextRender, computed, inject, signal, DestroyRef } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Data, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
@@ -61,10 +61,17 @@ export class SiteLayout {
 
     /** True while the site is showing dark mode (from the saved choice, or the device setting). */
   protected readonly isDark = signal(currentlyDark());
+    /** Off until the page has drawn, so the switch appears in place instead of sliding in on every load. */
+  protected readonly animateSwitch = signal(false);
 
   constructor() {
     // With no saved choice the site follows the device, so keep the icon in step if that changes.
-    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => this.isDark.set(currentlyDark()));
+    const media = matchMedia('(prefers-color-scheme: dark)');
+    afterNextRender(() => requestAnimationFrame(() => this.animateSwitch.set(true)));
+    
+    const update = () => this.isDark.set(currentlyDark());
+    media.addEventListener('change', update);
+    inject(DestroyRef).onDestroy(() => media.removeEventListener('change', update));
   }
 
   protected toggleTheme(): void {

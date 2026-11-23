@@ -47,6 +47,8 @@ input[type="password"] {
   font-family: var(--font-body);
   font-size: 12pt;
   padding: 12px 14px;
+  color: var(--colour-text);
+  background-color: var(--colour-card-bg);
   border: 2px solid var(--colour-border);
   border-radius: 6px;
   outline: none;
@@ -54,9 +56,7 @@ input[type="password"] {
 }
 
 input[type="password"]:focus {
-  color: var(--colour-text);
   border-color: var(--colour-secondary-blue);
-  background-color: var(--colour-card-bg);
 }
 
 .btn { width: 100%; }

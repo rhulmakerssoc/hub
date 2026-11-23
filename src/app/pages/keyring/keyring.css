@@ -33,7 +33,7 @@
 }
 
 .message-box {
-  background-color: #fffaf0;
+  background-color: var(--colour-panel);
   border-left: 6px solid var(--colour-secondary-blue);
   border-radius: 8px;
   padding: 18px 22px;
