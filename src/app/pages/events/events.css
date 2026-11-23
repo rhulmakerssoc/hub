@@ -2,13 +2,14 @@
   display: flex;
   justify-content: center;
 }
+
 iframe {
   width: 100%;
   max-width: 900px;
   height: 650px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--colour-border);
   border-radius: 8px;
-  background-color: #fff;
+  background-color: var(--colour-card-bg);
 }
 @media (max-width: 760px) {
   iframe {

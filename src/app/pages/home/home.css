@@ -23,7 +23,7 @@
 .link-tile p {
   margin-bottom: 0;
   line-height: 1.2;
-  color: #444;
+  color: var(--colour-muted);
 }
 @media (max-width: 760px) {
   .link-grid {

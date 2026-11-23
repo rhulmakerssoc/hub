@@ -21,7 +21,7 @@
   margin-top: 16px;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid #ddd;
+  border: 1px solid var(--colour-border);
 }
 .map-wrap iframe {
   display: block;

@@ -4,56 +4,68 @@ app-faqs-page h2 {
   border-bottom: 3px solid var(--colour-primary);
   padding-bottom: 8pt;
 }
+
 app-faqs-page .faq-row {
   display: flex;
   align-items: center;
   gap: 28px;
   margin-top: 16px;
 }
+
 app-faqs-page .faq-row.reverse {
   flex-direction: row-reverse;
 }
+
 app-faqs-page .faq-image {
   flex: 0 0 240px;
   height: 180px;
   border-radius: 8px;
   overflow: hidden;
-  background-color: #eee;
-  border: 1px solid #ddd;
+  background-color: var(--colour-panel);
+  border: 1px solid var(--colour-border);
 }
+
 app-faqs-page .faq-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 app-faqs-page .faq-text {
   flex: 1;
   min-width: 0;
 }
+
 app-faqs-page .faq-form {
   display: block;
   width: 100%;
   height: 600px;
   border: 0;
 }
+
 app-faqs-page .faq-notice {
-  color: #ff0000;
+  color: light-dark(#ff0000, #ff6b6b);
   text-align: center;
 }
+
 app-faqs-page .link-whatsapp,
 app-faqs-page .link-discord,
 app-faqs-page .link-instagram {
   font-weight: bold;
 }
+
 app-faqs-page .link-whatsapp {
   color: #5c9e31;
 }
+
 app-faqs-page .link-discord {
-  color: #5865f2;
+  color: light-dark(#5865f2, #949cf8);
 }
+
 app-faqs-page .link-instagram {
-  color: #a838f3;
+  color: light-dark(#a838f3, #c98bfa);
 }
+
 @media (max-width: 760px) {
   app-faqs-page .faq-row,
   app-faqs-page .faq-row.reverse {

@@ -1,5 +1,5 @@
 .calc-results {
-  background-color: #fffaf0;
+  background-color: var(--colour-panel);
   border-left: 6px solid var(--colour-primary);
   border-radius: 8px;
   padding: 18px 22px;
@@ -23,7 +23,7 @@
 
 .calc-notes {
   font-size: 9pt;
-  color: #666;
+  color: var(--colour-muted);
   margin-top: 10px;
 }
 
